@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0">
+  <bpmn:process id="weather-alert-demo" name="weather-alert-demo" isExecutable="true">
+    <bpmn:startEvent id="StartEventProcessStarted" name="Process&#10;started">
+      <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow1" sourceRef="StartEventProcessStarted" targetRef="Activity_0b543el" />
+    <bpmn:sequenceFlow id="Flow_0pgskvh" sourceRef="Activity_0b543el" targetRef="Gateway_0xhvese" />
+    <bpmn:serviceTask id="Activity_0b543el" name="Get Geo Location">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">http://api.openweathermap.org/geo/1.0/direct?q=Colombo&amp;appid=2e5ece253c9269b1adbd0acd83445649</camunda:inputParameter>
+            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:outputParameter name="geo">${response}</camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0pgskvh</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_0xhvese" name="Co-ordinates available?">
+      <bpmn:incoming>Flow_0pgskvh</bpmn:incoming>
+      <bpmn:outgoing>Flow_14g09io</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1e5np38</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_18ld32m" name="End">
+      <bpmn:incoming>Flow_0mklpij</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_14g09io" name="No" sourceRef="Gateway_0xhvese" targetRef="Activity_1au0yde">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${geo == null}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1e5np38" name="Yes" sourceRef="Gateway_0xhvese" targetRef="Activity_1i4l16f">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${geo != null}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0mklpij" sourceRef="Activity_1au0yde" targetRef="Event_18ld32m" />
+    <bpmn:serviceTask id="Activity_1au0yde" name="Print Complaint on weather" camunda:class="org.example.LoggerDelegate">
+      <bpmn:incoming>Flow_14g09io</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mklpij</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1i4l16f" name="Print Geo Loc Details" camunda:class="org.example.LoggerDelegate">
+      <bpmn:incoming>Flow_1e5np38</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vpu2gn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0shbiqc" name="Get Current Weather">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://api.openweathermap.org/data/2.5/weather?lat=${S(geo).elements().get(0).prop('lat').value()}&amp;lon=${S(geo).elements().get(0).prop('lon').value()}&amp;appid=2e5ece253c9269b1adbd0acd83445649</camunda:inputParameter>
+            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:outputParameter name="weather">${response}</camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vpu2gn</bpmn:incoming>
+      <bpmn:outgoing>Flow_12nkvpm</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0vpu2gn" sourceRef="Activity_1i4l16f" targetRef="Activity_0shbiqc" />
+    <bpmn:endEvent id="Event_0qoy0pj">
+      <bpmn:incoming>Flow_17kgyzy</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_12nkvpm" sourceRef="Activity_0shbiqc" targetRef="Activity_1v3t5mt" />
+    <bpmn:sequenceFlow id="Flow_17kgyzy" sourceRef="Activity_1v3t5mt" targetRef="Event_0qoy0pj" />
+    <bpmn:serviceTask id="Activity_1v3t5mt" name="Print Weather" camunda:class="org.example.LoggerDelegate">
+      <bpmn:incoming>Flow_12nkvpm</bpmn:incoming>
+      <bpmn:outgoing>Flow_17kgyzy</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="weather-alert-demo">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEventProcessStarted">
+        <dc:Bounds x="162" y="392" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="160" y="428" width="41" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n6t131_di" bpmnElement="Activity_0b543el">
+        <dc:Bounds x="290" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0xhvese_di" bpmnElement="Gateway_0xhvese" isMarkerVisible="true">
+        <dc:Bounds x="485" y="385" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="478" y="436" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_18ld32m_di" bpmnElement="Event_18ld32m">
+        <dc:Bounds x="492" y="112" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="500" y="82" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uo9y3c_di" bpmnElement="Activity_1au0yde">
+        <dc:Bounds x="460" y="240" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0k2xoo8" bpmnElement="Activity_1i4l16f">
+        <dc:Bounds x="660" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vth5zs_di" bpmnElement="Activity_0shbiqc">
+        <dc:Bounds x="890" y="370" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qoy0pj_di" bpmnElement="Event_0qoy0pj">
+        <dc:Bounds x="1272" y="392" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00qfczi_di" bpmnElement="Activity_1v3t5mt">
+        <dc:Bounds x="1080" y="370" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_08va5r8_di" bpmnElement="SequenceFlow1">
+        <di:waypoint x="198" y="410" />
+        <di:waypoint x="290" y="410" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="337.5" y="110" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pgskvh_di" bpmnElement="Flow_0pgskvh">
+        <di:waypoint x="390" y="410" />
+        <di:waypoint x="485" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14g09io_di" bpmnElement="Flow_14g09io">
+        <di:waypoint x="510" y="385" />
+        <di:waypoint x="510" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="518" y="343" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e5np38_di" bpmnElement="Flow_1e5np38">
+        <di:waypoint x="535" y="410" />
+        <di:waypoint x="660" y="410" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="589" y="393" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mklpij_di" bpmnElement="Flow_0mklpij">
+        <di:waypoint x="510" y="240" />
+        <di:waypoint x="510" y="148" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vpu2gn_di" bpmnElement="Flow_0vpu2gn">
+        <di:waypoint x="760" y="410" />
+        <di:waypoint x="890" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12nkvpm_di" bpmnElement="Flow_12nkvpm">
+        <di:waypoint x="990" y="410" />
+        <di:waypoint x="1080" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17kgyzy_di" bpmnElement="Flow_17kgyzy">
+        <di:waypoint x="1180" y="410" />
+        <di:waypoint x="1272" y="410" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

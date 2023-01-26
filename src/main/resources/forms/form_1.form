@@ -1,0 +1,27 @@
+{
+  "components": [
+    {
+      "label": "Location Name",
+      "type": "textfield",
+      "id": "Field_1f6l3sv",
+      "key": "q",
+      "defaultValue": "Colombo"
+    },
+    {
+      "label": "Application Id (Key)",
+      "type": "textfield",
+      "id": "Field_1m7amm2",
+      "key": "appId",
+      "defaultValue": "2e5ece253c9269b1adbd0acd83445649"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1dis0rg",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.7.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 6
+}
