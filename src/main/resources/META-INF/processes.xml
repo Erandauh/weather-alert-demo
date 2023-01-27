@@ -6,7 +6,6 @@
   <process-archive>
     <process-engine>default</process-engine>
 
-    <resource>form_1.form</resource>
 
     <properties>
       <property name="isDeleteUponUndeploy">false</property>
