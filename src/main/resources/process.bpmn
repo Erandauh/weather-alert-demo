@@ -10,7 +10,7 @@
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">http://api.openweathermap.org/geo/1.0/direct?q=Colombo&amp;appid=2e5ece253c9269b1adbd0acd83445649</camunda:inputParameter>
+            <camunda:inputParameter name="url">http://api.openweathermap.org/geo/1.0/direct?q=${country}&amp;appid=2e5ece253c9269b1adbd0acd83445649</camunda:inputParameter>
             <camunda:inputParameter name="method">GET</camunda:inputParameter>
             <camunda:outputParameter name="geo">${response}</camunda:outputParameter>
           </camunda:inputOutput>
@@ -206,8 +206,14 @@
       <bpmn:outgoing>Flow_0r0e93s</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0dg53a0" sourceRef="UserTask_1" targetRef="Activity_0b543el" />
-    <bpmn:userTask id="UserTask_1" name="Enter Location" camunda:formKey="embedded:app:forms/start-form.html" camunda:assignee="demo">
-      <bpmn:extensionElements />
+    <bpmn:userTask id="UserTask_1" name="Enter Location" camunda:assignee="demo">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="country" label="Country" type="string">
+            <camunda:validation />
+          </camunda:formField>
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow1</bpmn:incoming>
       <bpmn:outgoing>Flow_0dg53a0</bpmn:outgoing>
     </bpmn:userTask>
