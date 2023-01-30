@@ -57,7 +57,7 @@
       <bpmn:incoming>Flow_0xbxjcp</bpmn:incoming>
       <bpmn:outgoing>Flow_12nkvpm</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_0vpu2gn" sourceRef="Activity_1i4l16f" targetRef="Gateway_1vh4j9c" />
+    <bpmn:sequenceFlow id="Flow_0vpu2gn" sourceRef="Activity_1i4l16f" targetRef="Event_1bzy326" />
     <bpmn:sequenceFlow id="Flow_12nkvpm" sourceRef="Activity_0shbiqc" targetRef="Activity_1v3t5mt" />
     <bpmn:serviceTask id="Activity_1v3t5mt" name="Print Weather" camunda:class="org.example.LoggerDelegate">
       <bpmn:incoming>Flow_12nkvpm</bpmn:incoming>
@@ -65,7 +65,7 @@
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0xbxjcp" sourceRef="Gateway_1vh4j9c" targetRef="Activity_0shbiqc" />
     <bpmn:parallelGateway id="Gateway_1vh4j9c">
-      <bpmn:incoming>Flow_0vpu2gn</bpmn:incoming>
+      <bpmn:incoming>Flow_0k47y62</bpmn:incoming>
       <bpmn:outgoing>Flow_0xbxjcp</bpmn:outgoing>
       <bpmn:outgoing>Flow_0meqk0u</bpmn:outgoing>
       <bpmn:outgoing>Flow_02s3jtv</bpmn:outgoing>
@@ -81,11 +81,11 @@
       <bpmn:incoming>Flow_0vunxka</bpmn:incoming>
       <bpmn:outgoing>Flow_0k7vif7</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:serviceTask id="Activity_1tfnc3i" name="Get Climate Data">
+    <bpmn:serviceTask id="Activity_1tfnc3i" name="Get Forecast Data">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://api.openweathermap.org/data/2.5/forecast?lat=6.9387469&amp;lon=79.8541134&amp;appid=2e5ece253c9269b1adbd0acd83445649&amp;cnt=1</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://api.openweathermap.org/data/2.5/forecast?lat=${S(geo).elements().get(0).prop('lat').value()}&amp;lon=${S(geo).elements().get(0).prop('lon').value()}&amp;appid=2e5ece253c9269b1adbd0acd83445649&amp;cnt=1</camunda:inputParameter>
             <camunda:inputParameter name="method">GET</camunda:inputParameter>
             <camunda:outputParameter name="climate">${response}</camunda:outputParameter>
           </camunda:inputOutput>
@@ -95,7 +95,7 @@
       <bpmn:incoming>Flow_0meqk0u</bpmn:incoming>
       <bpmn:outgoing>Flow_1ik4f52</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0ocx4fb" name="Print Climate Data" camunda:class="org.example.LoggerDelegate">
+    <bpmn:serviceTask id="Activity_0ocx4fb" name="Print Forecast Data" camunda:class="org.example.LoggerDelegate">
       <bpmn:incoming>Flow_1ik4f52</bpmn:incoming>
       <bpmn:outgoing>Flow_0rpitqy</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -108,27 +108,27 @@
     </bpmn:endEvent>
     <bpmn:exclusiveGateway id="Gateway_1tbxpi8" name="In Risk?">
       <bpmn:extensionElements />
-      <bpmn:incoming>Flow_1e1jql1</bpmn:incoming>
+      <bpmn:incoming>Flow_1tafecc</bpmn:incoming>
       <bpmn:outgoing>Flow_0lpgwd0</bpmn:outgoing>
       <bpmn:outgoing>Flow_1v13d65</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1e1jql1" sourceRef="Activity_14qtk68" targetRef="Gateway_1tbxpi8" />
+    <bpmn:sequenceFlow id="Flow_1e1jql1" sourceRef="Activity_14qtk68" targetRef="Event_189cwfg" />
     <bpmn:serviceTask id="Activity_14qtk68" name="Evaluate Data" camunda:class="org.example.DataEvaluatorDelegate">
       <bpmn:incoming>Flow_0k7vif7</bpmn:incoming>
       <bpmn:outgoing>Flow_1e1jql1</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_03iw2ub" name="Print Forecast Data" camunda:class="org.example.LoggerDelegate">
+    <bpmn:serviceTask id="Activity_03iw2ub" name="Print Historical Data" camunda:class="org.example.LoggerDelegate">
       <bpmn:incoming>Flow_0u82j55</bpmn:incoming>
       <bpmn:outgoing>Flow_0vunxka</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_02s3jtv" sourceRef="Gateway_1vh4j9c" targetRef="Activity_1uq3w0y" />
     <bpmn:sequenceFlow id="Flow_0u82j55" sourceRef="Activity_1uq3w0y" targetRef="Activity_03iw2ub" />
     <bpmn:sequenceFlow id="Flow_0vunxka" sourceRef="Activity_03iw2ub" targetRef="Gateway_0xyon3p" />
-    <bpmn:serviceTask id="Activity_1uq3w0y" name="Get Forecast Data">
+    <bpmn:serviceTask id="Activity_1uq3w0y" name="Get Historical Data">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://api.openweathermap.org/data/2.5/forecast?lat=6.9387469&amp;lon=79.8541134&amp;appid=2e5ece253c9269b1adbd0acd83445649&amp;cnt=1</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://history.openweathermap.org/data/2.5/history/city?lat=${S(geo).elements().get(0).prop('lat').value()}&amp;lon=${S(geo).elements().get(0).prop('lon').value()}&amp;appid=2e5ece253c9269b1adbd0acd83445649&amp;type=hour&amp;start=1369728000&amp;end=1369789200</camunda:inputParameter>
             <camunda:inputParameter name="method">GET</camunda:inputParameter>
             <camunda:outputParameter name="forecast">${response}</camunda:outputParameter>
           </camunda:inputOutput>
@@ -217,6 +217,22 @@
       <bpmn:outgoing>Flow_1neicu9</bpmn:outgoing>
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_01krmzd" escalationRef="Escalation_2a5i12o" camunda:escalationCodeVariable="escSupervisor" />
     </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0k47y62" sourceRef="Event_1bzy326" targetRef="Gateway_1vh4j9c" />
+    <bpmn:intermediateCatchEvent id="Event_1bzy326">
+      <bpmn:incoming>Flow_0vpu2gn</bpmn:incoming>
+      <bpmn:outgoing>Flow_0k47y62</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1lua2su">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1tafecc" sourceRef="Event_189cwfg" targetRef="Gateway_1tbxpi8" />
+    <bpmn:intermediateCatchEvent id="Event_189cwfg">
+      <bpmn:incoming>Flow_1e1jql1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1tafecc</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_05nw9v7">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT15S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
   </bpmn:process>
   <bpmn:error id="Error_0hqx15e" name="errAlert" errorCode="#{errAlert}" camunda:errorMessage="Critical Error in Alerting" />
   <bpmn:escalation id="Escalation_08274rj" name="escOIC" escalationCode="escOIC" />
@@ -228,10 +244,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="160" y="428" width="41" height="27" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1n6t131_di" bpmnElement="Activity_0b543el">
-        <dc:Bounds x="550" y="370" width="100" height="80" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0xhvese_di" bpmnElement="Gateway_0xhvese" isMarkerVisible="true">
         <dc:Bounds x="745" y="385" width="50" height="50" />
@@ -249,10 +261,6 @@
         <dc:Bounds x="720" y="240" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0k2xoo8" bpmnElement="Activity_1i4l16f">
-        <dc:Bounds x="920" y="370" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1vth5zs_di" bpmnElement="Activity_0shbiqc">
         <dc:Bounds x="1190" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -267,9 +275,11 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0nkfi10_di" bpmnElement="Activity_1tfnc3i">
         <dc:Bounds x="1190" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_00sgsn6_di" bpmnElement="Activity_0ocx4fb">
         <dc:Bounds x="1360" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0567s0w_di" bpmnElement="Event_1sap42o">
         <dc:Bounds x="1772" y="562" width="36" height="36" />
@@ -292,9 +302,28 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1xiieex_di" bpmnElement="Activity_1uq3w0y">
         <dc:Bounds x="1190" y="510" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0npxanb_di" bpmnElement="Activity_1c6g1g9">
         <dc:Bounds x="1765" y="1030" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1wjlqaf_di" bpmnElement="UserTask_1">
+        <dc:Bounds x="310" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n6t131_di" bpmnElement="Activity_0b543el">
+        <dc:Bounds x="510" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0k2xoo8" bpmnElement="Activity_1i4l16f">
+        <dc:Bounds x="900" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0o15v0g_di" bpmnElement="Event_1bzy326">
+        <dc:Bounds x="1032" y="392" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08ugpjy_di" bpmnElement="Event_189cwfg">
+        <dc:Bounds x="1632" y="482" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1papi62_di" bpmnElement="Activity_1xibzvr" isExpanded="true">
         <dc:Bounds x="1460" y="680" width="462" height="270" />
@@ -361,10 +390,6 @@
       <bpmndi:BPMNShape id="Activity_1y6gw10_di" bpmnElement="Activity_1o9x0hv">
         <dc:Bounds x="1500" y="1030" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1wjlqaf_di" bpmnElement="UserTask_1">
-        <dc:Bounds x="290" y="370" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_06s4elt_di" bpmnElement="Event_0g9vjxa">
         <dc:Bounds x="1532" y="932" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -373,13 +398,13 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_08va5r8_di" bpmnElement="SequenceFlow1">
         <di:waypoint x="198" y="410" />
-        <di:waypoint x="290" y="410" />
+        <di:waypoint x="310" y="410" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="337.5" y="110" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0pgskvh_di" bpmnElement="Flow_0pgskvh">
-        <di:waypoint x="650" y="410" />
+        <di:waypoint x="610" y="410" />
         <di:waypoint x="745" y="410" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14g09io_di" bpmnElement="Flow_14g09io">
@@ -391,9 +416,9 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e5np38_di" bpmnElement="Flow_1e5np38">
         <di:waypoint x="795" y="410" />
-        <di:waypoint x="920" y="410" />
+        <di:waypoint x="900" y="410" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="849" y="393" width="18" height="14" />
+          <dc:Bounds x="839" y="393" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0mklpij_di" bpmnElement="Flow_0mklpij">
@@ -401,8 +426,8 @@
         <di:waypoint x="770" y="168" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vpu2gn_di" bpmnElement="Flow_0vpu2gn">
-        <di:waypoint x="1020" y="410" />
-        <di:waypoint x="1095" y="410" />
+        <di:waypoint x="1000" y="410" />
+        <di:waypoint x="1032" y="410" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_12nkvpm_di" bpmnElement="Flow_12nkvpm">
         <di:waypoint x="1290" y="270" />
@@ -443,7 +468,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e1jql1_di" bpmnElement="Flow_1e1jql1">
         <di:waypoint x="1650" y="450" />
-        <di:waypoint x="1650" y="555" />
+        <di:waypoint x="1650" y="482" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02s3jtv_di" bpmnElement="Flow_02s3jtv">
         <di:waypoint x="1120" y="435" />
@@ -483,8 +508,16 @@
         <di:waypoint x="1662" y="1070" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0dg53a0_di" bpmnElement="Flow_0dg53a0">
-        <di:waypoint x="390" y="410" />
-        <di:waypoint x="550" y="410" />
+        <di:waypoint x="410" y="410" />
+        <di:waypoint x="510" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k47y62_di" bpmnElement="Flow_0k47y62">
+        <di:waypoint x="1068" y="410" />
+        <di:waypoint x="1095" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1tafecc_di" bpmnElement="Flow_1tafecc">
+        <di:waypoint x="1650" y="518" />
+        <di:waypoint x="1650" y="555" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

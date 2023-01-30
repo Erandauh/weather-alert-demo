@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static org.example.ColorConstants.ANSI_RED;
+import static org.example.ColorConstants.ANSI_RESET;
 import static org.example.ProcessConstants.*;
 
 @Slf4j
@@ -27,8 +29,10 @@ public class EscalationPolicyDelegate implements JavaDelegate {
         delegateExecution.setVariable(KEY_SUPERVISOR_AVAILABLE, randoms[1]);
         delegateExecution.setVariable(KEY_ALERT_ERR, randoms[2]);
 
+        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
         if (randoms[0]) {
             logger.info("To be alerted to >> Officer in Charge");
+
         } else if (randoms[1]) {
             logger.info("To be alerted to >> SUPERVISOR");
         } else {
