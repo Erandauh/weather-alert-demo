@@ -147,8 +147,8 @@
       <bpmn:exclusiveGateway id="Gateway_1phm0j4">
         <bpmn:incoming>Flow_0ckyde3</bpmn:incoming>
         <bpmn:outgoing>Flow_0ed3dvq</bpmn:outgoing>
-        <bpmn:outgoing>Flow_1p5cl9q</bpmn:outgoing>
         <bpmn:outgoing>Flow_01nvk23</bpmn:outgoing>
+        <bpmn:outgoing>Flow_1p5cl9q</bpmn:outgoing>
       </bpmn:exclusiveGateway>
       <bpmn:sequenceFlow id="Flow_0ckyde3" sourceRef="Activity_0lavm63" targetRef="Gateway_1phm0j4" />
       <bpmn:sequenceFlow id="Flow_0ed3dvq" name="Supervisor available?" sourceRef="Gateway_1phm0j4" targetRef="escSupervisor">
@@ -158,13 +158,6 @@
         <bpmn:incoming>Flow_0ed3dvq</bpmn:incoming>
         <bpmn:escalationEventDefinition id="EscalationEventDefinition_09irwkr" escalationRef="Escalation_2a5i12o" />
       </bpmn:intermediateThrowEvent>
-      <bpmn:sequenceFlow id="Flow_1p5cl9q" name="Alert Error!" sourceRef="Gateway_1phm0j4" targetRef="Event_0basswp">
-        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{errAlert}</bpmn:conditionExpression>
-      </bpmn:sequenceFlow>
-      <bpmn:endEvent id="Event_0basswp">
-        <bpmn:incoming>Flow_1p5cl9q</bpmn:incoming>
-        <bpmn:errorEventDefinition id="ErrorEventDefinition_14grva9" errorRef="Error_0hqx15e" />
-      </bpmn:endEvent>
       <bpmn:serviceTask id="Activity_0lavm63" name="Evaluate Escalation Policy" camunda:class="org.example.EscalationPolicyDelegate">
         <bpmn:incoming>Flow_00xf5ix</bpmn:incoming>
         <bpmn:outgoing>Flow_0ckyde3</bpmn:outgoing>
@@ -175,6 +168,13 @@
       <bpmn:endEvent id="Event_1wn502h">
         <bpmn:incoming>Flow_01nvk23</bpmn:incoming>
       </bpmn:endEvent>
+      <bpmn:endEvent id="Event_0basswp">
+        <bpmn:incoming>Flow_1p5cl9q</bpmn:incoming>
+        <bpmn:errorEventDefinition id="ErrorEventDefinition_14grva9" errorRef="Error_0hqx15e" />
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_1p5cl9q" name="Alert Error!" sourceRef="Gateway_1phm0j4" targetRef="Event_0basswp">
+        <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{errAlert}</bpmn:conditionExpression>
+      </bpmn:sequenceFlow>
     </bpmn:subProcess>
     <bpmn:sequenceFlow id="Flow_1v13d65" name="Yes" sourceRef="Gateway_1tbxpi8" targetRef="Activity_1xibzvr">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{inRisk}</bpmn:conditionExpression>

@@ -6,7 +6,6 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.example.ProcessConstants.KEY_OIC_INDUTY;
 import static org.example.ProcessConstants.KEY_SUPERVISOR_AVAILABLE;
 
 
@@ -19,9 +18,7 @@ public class AlertSystemDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
 
-        if (Boolean.getBoolean(delegateExecution.getVariableLocalTyped(KEY_OIC_INDUTY).getValue().toString())) {
-            logger.error("Officer Alerted!");
-        } else if (Boolean.getBoolean(delegateExecution.getVariableLocalTyped(KEY_SUPERVISOR_AVAILABLE)
+        if (Boolean.parseBoolean(delegateExecution.getVariableLocalTyped(KEY_SUPERVISOR_AVAILABLE)
                 .getValue().toString())) {
             logger.error("Supervisor Alerted!");
         } else {

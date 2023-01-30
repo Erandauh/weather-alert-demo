@@ -24,7 +24,7 @@ public class DataEvaluatorDelegate implements JavaDelegate {
         boolean inRisk = (e.getMain().getPressure() > 1000
                 && e.getMain().getHumidity() > 75
                 && e.getWind().speed > 3
-                && e.getClouds().all >= 40);
+                && e.getClouds().all >= 10);
 
             delegateExecution.setVariable(KEY_INRISK, inRisk);
     }
