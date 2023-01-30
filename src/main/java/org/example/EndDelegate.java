@@ -6,7 +6,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import javax.inject.Named;
 import java.util.logging.Logger;
 
-@Named("EndDelegate")
+@Named("endDelegate")
 public class EndDelegate implements JavaDelegate {
 
     private final Logger log = Logger.getLogger(EndDelegate.class.getName());

@@ -4,27 +4,28 @@ import com.google.gson.Gson;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.value.TypedValue;
-import org.example.model.Weather;
+import org.example.model.Example;
 
 import java.util.logging.Logger;
+
+import static org.example.ProcessConstants.KEY_INRISK;
+import static org.example.ProcessConstants.KEY_WEATHER;
 
 public class DataEvaluatorDelegate implements JavaDelegate {
 
     private final Logger log = Logger.getLogger(DataEvaluatorDelegate.class.getName());
 
-    private final static String KEY_WEATHER = "weather";
-    private static String KEY_INRISK = "inRisk";
-
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
-        TypedValue weatherT = delegateExecution.getVariableLocalTyped(KEY_WEATHER);
+        TypedValue exampleT = delegateExecution.getVariableLocalTyped(KEY_WEATHER);
 
-        Weather weather = new Gson().fromJson(weatherT.getValue().toString(), Weather.class);
+        Example e = new Gson().fromJson(exampleT.getValue().toString(), Example.class);
 
-        if (weather.getMain().getPressure() > 1000) {
-            delegateExecution.setVariable(KEY_INRISK, true);
+        boolean inRisk = (e.getMain().getPressure() > 1000
+                && e.getMain().getHumidity() > 75
+                && e.getWind().speed > 3
+                && e.getClouds().all >= 40);
 
-            log.info("IN RISK!!!");
-        }
+            delegateExecution.setVariable(KEY_INRISK, inRisk);
     }
 }

@@ -32,7 +32,7 @@ public class EvaluatorTest extends TestCase {
             "        \"temp_min\": 302.14,\n" +
             "        \"temp_max\": 302.14,\n" +
             "        \"pressure\": 1009,\n" +
-            "        \"humidity\": 74,\n" +
+            "        \"humidity\": 80,\n" +
             "        \"sea_level\": 1009,\n" +
             "        \"grnd_level\": 1008\n" +
             "    },\n" +
