@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0">
   <bpmn:process id="weather-alert-demo" name="weather-alert-demo" isExecutable="true">
     <bpmn:startEvent id="StartEventProcessStarted" name="Process&#10;started">
       <bpmn:outgoing>SequenceFlow1</bpmn:outgoing>
@@ -245,85 +245,72 @@
           <dc:Bounds x="160" y="428" width="41" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0xhvese_di" bpmnElement="Gateway_0xhvese" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="Activity_1n6t131_di" bpmnElement="Activity_0b543el" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
+        <dc:Bounds x="510" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0xhvese_di" bpmnElement="Gateway_0xhvese" isMarkerVisible="true" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
         <dc:Bounds x="745" y="385" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="738" y="436" width="64" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_18ld32m_di" bpmnElement="Event_18ld32m">
+      <bpmndi:BPMNShape id="Event_18ld32m_di" bpmnElement="Event_18ld32m" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
         <dc:Bounds x="752" y="132" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="760" y="102" width="20" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0uo9y3c_di" bpmnElement="Activity_1au0yde">
+      <bpmndi:BPMNShape id="Activity_0uo9y3c_di" bpmnElement="Activity_1au0yde" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
         <dc:Bounds x="720" y="240" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1vth5zs_di" bpmnElement="Activity_0shbiqc">
+      <bpmndi:BPMNShape id="BPMNShape_0k2xoo8" bpmnElement="Activity_1i4l16f" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="900" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vth5zs_di" bpmnElement="Activity_0shbiqc" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
         <dc:Bounds x="1190" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_00qfczi_di" bpmnElement="Activity_1v3t5mt">
+      <bpmndi:BPMNShape id="Activity_00qfczi_di" bpmnElement="Activity_1v3t5mt" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
         <dc:Bounds x="1360" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1x9asxn_di" bpmnElement="Gateway_1vh4j9c">
+      <bpmndi:BPMNShape id="Gateway_1x9asxn_di" bpmnElement="Gateway_1vh4j9c" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
         <dc:Bounds x="1095" y="385" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1t564ah_di" bpmnElement="Gateway_0xyon3p">
+      <bpmndi:BPMNShape id="Gateway_1t564ah_di" bpmnElement="Gateway_0xyon3p" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
         <dc:Bounds x="1505" y="385" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0nkfi10_di" bpmnElement="Activity_1tfnc3i">
+      <bpmndi:BPMNShape id="Activity_0nkfi10_di" bpmnElement="Activity_1tfnc3i" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
         <dc:Bounds x="1190" y="370" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_00sgsn6_di" bpmnElement="Activity_0ocx4fb">
+      <bpmndi:BPMNShape id="Activity_00sgsn6_di" bpmnElement="Activity_0ocx4fb" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
         <dc:Bounds x="1360" y="370" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0567s0w_di" bpmnElement="Event_1sap42o">
+      <bpmndi:BPMNShape id="Event_0567s0w_di" bpmnElement="Event_1sap42o" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
         <dc:Bounds x="1772" y="562" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1780" y="605" width="20" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1tbxpi8_di" bpmnElement="Gateway_1tbxpi8" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="Gateway_1tbxpi8_di" bpmnElement="Gateway_1tbxpi8" isMarkerVisible="true" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
         <dc:Bounds x="1625" y="555" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1580" y="573" width="40" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_07rynnz_di" bpmnElement="Activity_14qtk68">
+      <bpmndi:BPMNShape id="Activity_07rynnz_di" bpmnElement="Activity_14qtk68" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
         <dc:Bounds x="1600" y="370" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0xoeyrg" bpmnElement="Activity_03iw2ub">
+      <bpmndi:BPMNShape id="BPMNShape_0xoeyrg" bpmnElement="Activity_03iw2ub" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
         <dc:Bounds x="1360" y="510" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1xiieex_di" bpmnElement="Activity_1uq3w0y">
+      <bpmndi:BPMNShape id="Activity_1xiieex_di" bpmnElement="Activity_1uq3w0y" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
         <dc:Bounds x="1190" y="510" width="100" height="80" />
         <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0npxanb_di" bpmnElement="Activity_1c6g1g9">
-        <dc:Bounds x="1765" y="1030" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1wjlqaf_di" bpmnElement="UserTask_1">
-        <dc:Bounds x="310" y="370" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1n6t131_di" bpmnElement="Activity_0b543el">
-        <dc:Bounds x="510" y="370" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0k2xoo8" bpmnElement="Activity_1i4l16f">
-        <dc:Bounds x="900" y="370" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0o15v0g_di" bpmnElement="Event_1bzy326">
-        <dc:Bounds x="1032" y="392" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_08ugpjy_di" bpmnElement="Event_189cwfg">
-        <dc:Bounds x="1632" y="482" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1papi62_di" bpmnElement="Activity_1xibzvr" isExpanded="true">
         <dc:Bounds x="1460" y="680" width="462" height="270" />
@@ -332,7 +319,7 @@
       <bpmndi:BPMNShape id="Event_0ptrmyw_di" bpmnElement="Event_0ptrmyw">
         <dc:Bounds x="1492" y="732" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1phm0j4_di" bpmnElement="Gateway_1phm0j4" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="Gateway_1phm0j4_di" bpmnElement="Gateway_1phm0j4" isMarkerVisible="true" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
         <dc:Bounds x="1705" y="725" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1769" y="733" width="62" height="14" />
@@ -341,14 +328,14 @@
       <bpmndi:BPMNShape id="Event_01jt153_di" bpmnElement="escSupervisor">
         <dc:Bounds x="1842" y="802" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1jo4u97_di" bpmnElement="Event_0basswp">
-        <dc:Bounds x="1842" y="872" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0gcomuu_di" bpmnElement="Activity_0lavm63">
+      <bpmndi:BPMNShape id="Activity_0gcomuu_di" bpmnElement="Activity_0lavm63" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
         <dc:Bounds x="1570" y="710" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1wn502h_di" bpmnElement="Event_1wn502h">
+      <bpmndi:BPMNShape id="Event_1wn502h_di" bpmnElement="Event_1wn502h" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
         <dc:Bounds x="1842" y="732" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jo4u97_di" bpmnElement="Event_0basswp">
+        <dc:Bounds x="1842" y="872" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_00xf5ix_di" bpmnElement="Flow_00xf5ix">
         <di:waypoint x="1528" y="750" />
@@ -366,6 +353,13 @@
           <dc:Bounds x="1763" y="786" width="54" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01nvk23_di" bpmnElement="Flow_01nvk23">
+        <di:waypoint x="1755" y="750" />
+        <di:waypoint x="1842" y="750" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1759" y="732" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1p5cl9q_di" bpmnElement="Flow_1p5cl9q">
         <di:waypoint x="1730" y="775" />
         <di:waypoint x="1730" y="890" />
@@ -374,27 +368,33 @@
           <dc:Bounds x="1763" y="873" width="53" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_01nvk23_di" bpmnElement="Flow_01nvk23">
-        <di:waypoint x="1755" y="750" />
-        <di:waypoint x="1842" y="750" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1759" y="732" width="62" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_12cap8y_di" bpmnElement="Event_12cap8y">
+      <bpmndi:BPMNShape id="Event_12cap8y_di" bpmnElement="Event_12cap8y" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
         <dc:Bounds x="1922" y="1052" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1hb66ku_di" bpmnElement="Event_1hb66ku">
+      <bpmndi:BPMNShape id="Event_1hb66ku_di" bpmnElement="Event_1hb66ku" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
         <dc:Bounds x="1662" y="1052" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1y6gw10_di" bpmnElement="Activity_1o9x0hv">
+      <bpmndi:BPMNShape id="Activity_1y6gw10_di" bpmnElement="Activity_1o9x0hv" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
         <dc:Bounds x="1500" y="1030" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_06s4elt_di" bpmnElement="Event_0g9vjxa">
-        <dc:Bounds x="1532" y="932" width="36" height="36" />
+      <bpmndi:BPMNShape id="Activity_1wjlqaf_di" bpmnElement="UserTask_1" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="310" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0npxanb_di" bpmnElement="Activity_1c6g1g9" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
+        <dc:Bounds x="1765" y="1030" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0o15v0g_di" bpmnElement="Event_1bzy326">
+        <dc:Bounds x="1032" y="392" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_08ugpjy_di" bpmnElement="Event_189cwfg">
+        <dc:Bounds x="1632" y="482" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_12qttml_di" bpmnElement="escSupervisor_B">
         <dc:Bounds x="1797" y="932" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06s4elt_di" bpmnElement="Event_0g9vjxa">
+        <dc:Bounds x="1532" y="932" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_08va5r8_di" bpmnElement="SequenceFlow1">
         <di:waypoint x="198" y="410" />
