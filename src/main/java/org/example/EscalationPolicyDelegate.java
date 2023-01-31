@@ -29,7 +29,6 @@ public class EscalationPolicyDelegate implements JavaDelegate {
         delegateExecution.setVariable(KEY_SUPERVISOR_AVAILABLE, randoms[1]);
         delegateExecution.setVariable(KEY_ALERT_ERR, randoms[2]);
 
-        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
         if (randoms[0]) {
             logger.info("To be alerted to >> Officer in Charge");
 

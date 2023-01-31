@@ -130,7 +130,7 @@
           <camunda:inputOutput>
             <camunda:inputParameter name="url">https://history.openweathermap.org/data/2.5/history/city?lat=${S(geo).elements().get(0).prop('lat').value()}&amp;lon=${S(geo).elements().get(0).prop('lon').value()}&amp;appid=2e5ece253c9269b1adbd0acd83445649&amp;type=hour&amp;start=1369728000&amp;end=1369789200</camunda:inputParameter>
             <camunda:inputParameter name="method">GET</camunda:inputParameter>
-            <camunda:outputParameter name="forecast">${response}</camunda:outputParameter>
+            <camunda:outputParameter name="history">${response}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
